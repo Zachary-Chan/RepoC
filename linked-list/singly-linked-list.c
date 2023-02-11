@@ -217,10 +217,8 @@ Node *deleteAfter(Node *head, DATA_TYPE after_value)
 
 Node *deleteAll(Node *head)
 {
-    Node* ptr = head;
-    while (ptr) {
-        head = deleteNode(head, ptr->data);
-        ptr = ptr->next;
+    while (head) {
+        head = deleteBeginning(head);
     }
     return head;
 }
