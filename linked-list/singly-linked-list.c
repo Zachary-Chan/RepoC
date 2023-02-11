@@ -19,8 +19,10 @@ Node *initialize()
 // display all linked list data, assuming DATA_TYPE is int
 void displayInt(Node *head)
 {
-    while (head){
-        printf("%d \t", head->data);
+    Node* ptr = head;
+    while (ptr){
+        printf("[%d] ", ptr->data);
+        ptr = ptr->next;
     }
     puts("");
 }
