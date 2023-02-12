@@ -250,7 +250,7 @@ static Node *showEndNode(Node *head)
     return ptr;
 }
 
-DATA_TYPE showBeginningData (Node* head) {
+static DATA_TYPE showBeginningData (Node* head) {
     if (isEmpty(head)) {
         return -1;
     }
@@ -258,7 +258,7 @@ DATA_TYPE showBeginningData (Node* head) {
     return head->data;
 }
 
-Node* showBeginningNode (Node* head) {
+static Node* showBeginningNode (Node* head) {
     return head;
 }
 
