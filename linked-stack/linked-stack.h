@@ -7,11 +7,17 @@ typedef struct Stack {
     Node* stack;
 }Stack;
 
-Stack* initializeStack(Stack* stack);
-void push(Stack* stack, DATA_TYPE value);
-DATA_TYPE pop(Stack* stack);
-DATA_TYPE peek(Stack* stack);
-void displayStack(Stack* stack);
-Stack* deleteStack(Stack* stack);
+struct linked_stack {
+    // functions:
+    Stack* (*initialize)(Stack* stack);
+    void (*push)(Stack* stack, DATA_TYPE value);
+    DATA_TYPE (*pop)(Stack* stack);
+    DATA_TYPE (*peek)(Stack* stack);
+    void (*displayAll)(Stack* stack);
+    Stack* (*deleteAll)(Stack* stack);
+};
+
+extern const struct linked_stack LINKED_STACK;
+
 
 #endif 

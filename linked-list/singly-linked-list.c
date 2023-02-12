@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-bool isEmpty(Node* head) {
+static bool isEmpty(Node* head) {
     if(!head) {
         return true;
     }
@@ -10,14 +10,14 @@ bool isEmpty(Node* head) {
 }
 
 // initialize linked list, making head equal to NULL
-Node *initialize()
+static Node *initialize()
 {
     Node* head = NULL;
     return head;
 }
 
 // display all linked list data, assuming DATA_TYPE is int
-void displayInt(Node *head)
+static void displayAll(Node *head)
 {
     Node* ptr = head;
     while (ptr){
@@ -27,7 +27,7 @@ void displayInt(Node *head)
     puts("");
 }
 
-Node *insertBeginning(Node *head, DATA_TYPE value)
+static Node *insertBeginning(Node *head, DATA_TYPE value)
 {
     // first step, creating new_node Node structure
     Node* new_node = (Node*)malloc(sizeof(Node));
@@ -47,7 +47,7 @@ Node *insertBeginning(Node *head, DATA_TYPE value)
     return head;
 }
 
-Node *insertEnd(Node *head, DATA_TYPE value)
+static Node *insertEnd(Node *head, DATA_TYPE value)
 {
     //first step, creating new_node containing the value 
     Node* new_node = (Node*)malloc(sizeof(Node));
@@ -72,7 +72,7 @@ Node *insertEnd(Node *head, DATA_TYPE value)
 }
 
 // insert before the first value found, and assume that the before_value indeed exists(list is not empty)
-Node *insertBefore(Node *head, DATA_TYPE value, DATA_TYPE before_value)
+static Node *insertBefore(Node *head, DATA_TYPE value, DATA_TYPE before_value)
 {
     // first step, creating new_node containing the value
     Node* new_node = (Node*)malloc(sizeof(Node));
@@ -95,7 +95,7 @@ Node *insertBefore(Node *head, DATA_TYPE value, DATA_TYPE before_value)
 }
 
 // insert after the first found value, assume that after_value indeed exists(list is not empty)
-Node *insertAfter(Node *head, DATA_TYPE value, DATA_TYPE after_value)
+static Node *insertAfter(Node *head, DATA_TYPE value, DATA_TYPE after_value)
 {
     Node* new_node = (Node*)malloc(sizeof(Node));
     new_node->data = value;
@@ -117,7 +117,7 @@ Node *insertAfter(Node *head, DATA_TYPE value, DATA_TYPE after_value)
 }
 
 // assume list is not empty 
-Node *deleteBeginning(Node *head)
+static Node *deleteBeginning(Node *head)
 {
     // special case, only one node in list 
     if(!head->next) {
@@ -133,7 +133,7 @@ Node *deleteBeginning(Node *head)
     return head;
 }
 
-Node *deleteEnd(Node *head)
+static Node *deleteEnd(Node *head)
 {
     // special case, only one node in list
     if (!head->next) {
@@ -153,7 +153,7 @@ Node *deleteEnd(Node *head)
 }
 
 // Assume list is not empty and value exists 
-Node *deleteNode(Node *head, DATA_TYPE value)
+static Node *deleteNode(Node *head, DATA_TYPE value)
 {
     // special case, value is the first node
     if (head->data == value) {
@@ -180,7 +180,7 @@ Node *deleteNode(Node *head, DATA_TYPE value)
 }
 
 // delete the node before firstly found node with data equal to before_value
-Node *deleteBefore(Node *head, DATA_TYPE before_value)
+static Node *deleteBefore(Node *head, DATA_TYPE before_value)
 {
     // special case, before_value is the first node, do nothing 
     if(head->data == before_value) {
@@ -198,7 +198,7 @@ Node *deleteBefore(Node *head, DATA_TYPE before_value)
 }
 
 // delete the node after firstly found node with data equal to after_value
-Node *deleteAfter(Node *head, DATA_TYPE after_value)
+static Node *deleteAfter(Node *head, DATA_TYPE after_value)
 {
     Node* ptr = head;
     while (ptr->data != after_value) {
@@ -215,7 +215,7 @@ Node *deleteAfter(Node *head, DATA_TYPE after_value)
     return head;
 }
 
-Node *deleteAll(Node *head)
+static Node *deleteAll(Node *head)
 {
     while (head) {
         head = deleteBeginning(head);
@@ -223,7 +223,7 @@ Node *deleteAll(Node *head)
     return head;
 }
 
-DATA_TYPE showEndData(Node *head)
+static DATA_TYPE showEndData(Node *head)
 {
     if (!head) {
         return -1;
@@ -237,7 +237,7 @@ DATA_TYPE showEndData(Node *head)
     return ptr->data;
 }
 
-Node *showEndNode(Node *head)
+static Node *showEndNode(Node *head)
 {
     if (isEmpty(head)) {
         return NULL;
@@ -254,7 +254,7 @@ Node *showEndNode(Node *head)
 const struct singly_linked_list SINGLY_LINKED_LIST = {
     .isEmpty = isEmpty,
     .initialize = initialize,
-    .displayInt = displayInt,
+    .displayAll = displayAll,
     .insertBeginning = insertBeginning,
     .insertEnd = insertEnd,
     .insertBefore = insertBefore,

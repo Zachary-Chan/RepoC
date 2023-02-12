@@ -13,7 +13,7 @@ struct singly_linked_list {
     bool (*isEmpty)(Node* head);
 
     Node* (*initialize)();
-    void (*displayInt)(Node* head);
+    void (*displayAll)(Node* head);
     Node* (*insertBeginning)(Node* head, DATA_TYPE value);
     Node* (*insertEnd)(Node* head, DATA_TYPE value);
     Node* (*insertBefore)(Node* head, DATA_TYPE value, DATA_TYPE before_value);
