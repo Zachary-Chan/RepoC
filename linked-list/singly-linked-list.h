@@ -12,7 +12,7 @@ typedef struct Node{
 // functions
 bool isEmpty(Node* head);
 
-Node* initialize();
+Node* initializeList();
 void displayInt(Node* head);
 Node* insertBeginning(Node* head, DATA_TYPE value);
 Node* insertEnd(Node* head, DATA_TYPE value);
@@ -25,5 +25,8 @@ Node* deleteNode(Node* head, DATA_TYPE value);
 Node* deleteBefore(Node* head, DATA_TYPE before_value);
 Node* deleteAfter(Node* head, DATA_TYPE after_value);
 Node* deleteAll(Node* head);
+
+DATA_TYPE showEndData(Node* head);
+Node* showEndNode(Node* head);
 
 #endif

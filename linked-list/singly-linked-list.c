@@ -10,7 +10,7 @@ bool isEmpty(Node* head) {
 }
 
 // initialize linked list, making head equal to NULL
-Node *initialize()
+Node *initializeList()
 {
     Node* head = NULL;
     return head;
@@ -221,4 +221,31 @@ Node *deleteAll(Node *head)
         head = deleteBeginning(head);
     }
     return head;
+}
+
+DATA_TYPE showEndData(Node *head)
+{
+    if (!head) {
+        return -1;
+    }
+
+    Node* ptr = head;
+    while(ptr->next) {
+        ptr = ptr->next;
+    }
+
+    return ptr->data;
+}
+
+Node *showEndNode(Node *head)
+{
+    if (isEmpty(head)) {
+        return NULL;
+    }
+
+    Node* ptr = head;
+    while(ptr->next) {
+        ptr = ptr->next;
+    }
+    return ptr;
 }
