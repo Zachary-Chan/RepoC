@@ -10,7 +10,7 @@ bool isEmpty(Node* head) {
 }
 
 // initialize linked list, making head equal to NULL
-Node *initializeList()
+Node *initialize()
 {
     Node* head = NULL;
     return head;
@@ -249,3 +249,21 @@ Node *showEndNode(Node *head)
     }
     return ptr;
 }
+
+
+const struct singly_linked_list SINGLY_LINKED_LIST = {
+    .isEmpty = isEmpty,
+    .initialize = initialize,
+    .displayInt = displayInt,
+    .insertBeginning = insertBeginning,
+    .insertEnd = insertEnd,
+    .insertBefore = insertBefore,
+    .insertAfter = insertAfter,
+    .deleteBeginning = deleteBeginning,
+    .deleteEnd = deleteEnd,
+    .deleteNode = deleteNode,
+    .deleteBefore = deleteBefore,
+    .deleteAfter = deleteAfter,
+    .deleteAll = deleteAll
+};
+
