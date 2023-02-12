@@ -250,6 +250,17 @@ static Node *showEndNode(Node *head)
     return ptr;
 }
 
+DATA_TYPE showBeginningData (Node* head) {
+    if (isEmpty(head)) {
+        return -1;
+    }
+
+    return head->data;
+}
+
+Node* showBeginningNode (Node* head) {
+    return head;
+}
 
 const struct singly_linked_list SINGLY_LINKED_LIST = {
     .isEmpty = isEmpty,
@@ -264,6 +275,11 @@ const struct singly_linked_list SINGLY_LINKED_LIST = {
     .deleteNode = deleteNode,
     .deleteBefore = deleteBefore,
     .deleteAfter = deleteAfter,
-    .deleteAll = deleteAll
+    .deleteAll = deleteAll,
+
+    .showEndData = showEndData,
+    .showEndNode = showEndNode,
+    .showBeginningData = showBeginningData,
+    .showBeginningNode = showBeginningNode
 };
 

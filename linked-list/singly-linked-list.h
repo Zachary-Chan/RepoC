@@ -28,6 +28,9 @@ struct singly_linked_list {
 
     DATA_TYPE (*showEndData)(Node* head);
     Node* (*showEndNode)(Node* head);
+
+    DATA_TYPE (*showBeginningData) (Node* head);
+    Node* (*showBeginningNode) (Node* head);
 };
 
 extern const struct singly_linked_list SINGLY_LINKED_LIST;

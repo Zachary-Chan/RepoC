@@ -42,7 +42,7 @@ DATA_TYPE peek(Stack *stack)
     return stack->stack[stack->top];
 }
 
-void displayInt(Stack *stack)
+void displayAll(Stack *stack)
 {
     // if empty 
     if (stack->top == -1){

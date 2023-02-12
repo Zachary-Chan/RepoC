@@ -12,6 +12,6 @@ Stack* initialize(Stack* stack);
 void push(Stack* stack, DATA_TYPE value);
 DATA_TYPE pop(Stack* stack);
 DATA_TYPE peek(Stack* stack);
-void displayInt(Stack* stack);
+void displayAll(Stack* stack);
 
 #endif
