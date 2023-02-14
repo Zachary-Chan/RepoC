@@ -232,6 +232,69 @@ static Node* deleteElement(Node* tree, DATA_TYPE value) {
     return tree;
 }
 
+static int totalNodes(Node* tree) {
+    if (!tree ){
+        return 0;
+    }
+    return totalNodes(tree->left) + totalNodes(tree->right) + 1;
+}
+
+static int totalLeaves(Node* tree) {
+    if (!tree) {
+        return 0;
+    }
+    if (!tree->left && !tree->right) {
+        return 1;
+    }
+
+    return totalLeaves(tree->left) + totalLeaves(tree->right);
+}
+
+static int totalNonleaves(Node* tree) {
+    if(!tree) {
+        return 0;
+    }
+    if (isLeaf(tree)) {
+        return 0;
+    }
+    return totalNonleaves(tree->left) + totalNonleaves(tree->right) + 1;
+}
+
+static int height(Node* tree) {
+    if(!tree) {
+        return 0;
+    }
+    int height_left = height(tree->left);
+    int height_right = height(tree->right);
+    int height_child = height_left > height_right ? height_left : height_right;
+    return height_child + 1;
+}
+
+static Node* mirrorImage(Node* tree) {
+    if(!tree) {
+        return tree;
+    }
+    tree->left = mirrorImage(tree->left);
+    tree->right = mirrorImage(tree->right);
+    Node* temp = tree->left;
+    tree->left = tree->right;
+    tree->right = temp;
+
+    return tree;
+}
+
+static Node* deleteTree(Node* tree) {
+    if (!tree) {
+        return tree;
+    }
+
+    tree->left = deleteTree(tree->left);
+    tree->right = deleteTree(tree->right);
+    free(tree);
+    tree = NULL;
+    return tree;
+}
+
 const struct binary_tree BINARY_TREE = {
     .initialize = initialize,
     .deleteElement = deleteElement,
@@ -241,5 +304,12 @@ const struct binary_tree BINARY_TREE = {
     .postorderTraversal = postorderTraversal,
     .preorderTraversal = preorderTraversal,
     .smallestNode = smallestNode,
-    .searchElement = searchElement
+    .searchElement = searchElement,
+
+    .totalNodes = totalNodes,
+    .totalLeaves = totalLeaves,
+    .totalNonleaves = totalNonleaves,
+    .height = height,
+    .mirrorImage = mirrorImage,
+    .deleteTree = deleteTree
 };

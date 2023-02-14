@@ -18,6 +18,13 @@ struct binary_tree {
     Node* (*smallestNode)(Node* tree);
     Node* (*largestNode)(Node* tree);
     Node* (*deleteElement)(Node* tree, DATA_TYPE value);
+
+    int (*totalNodes)(Node* tree);
+    int (*totalLeaves)(Node* tree);
+    int (*totalNonleaves)(Node* tree);
+    int (*height)(Node* tree);
+    Node* (*mirrorImage)(Node* tree);
+    Node* (*deleteTree)(Node* tree);
 };
 
 extern const struct binary_tree BINARY_TREE;
