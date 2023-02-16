@@ -3,13 +3,13 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-static _Node* initialize(_Node* tree ){
+static Node* initialize(Node* tree ){
     tree = NULL;
     return tree;
 }
 
-static _Node* insertElement(_Node* tree, DATA_TYPE value) {
-    _Node* new_node = (_Node*)malloc(sizeof(_Node));
+static Node* insertElement(Node* tree, DATA_TYPE value) {
+    Node* new_node = (Node*)malloc(sizeof(Node));
     new_node->data = value;
     new_node->left = new_node->right = NULL;
 
@@ -18,8 +18,8 @@ static _Node* insertElement(_Node* tree, DATA_TYPE value) {
         return tree;
     }
 
-    _Node* ptr = tree;
-    _Node* parent = NULL;
+    Node* ptr = tree;
+    Node* parent = NULL;
     while(ptr) {
         if(value < ptr->data) {
             parent = ptr; 
@@ -38,7 +38,7 @@ static _Node* insertElement(_Node* tree, DATA_TYPE value) {
     return tree;
 }
 
-static _Node* searchElement(_Node* tree, DATA_TYPE value) {
+static Node* searchElement(Node* tree, DATA_TYPE value) {
     if(!tree) {
         return NULL;
     }
@@ -54,7 +54,7 @@ static _Node* searchElement(_Node* tree, DATA_TYPE value) {
     return searchElement(tree->right, value);
 }
 
-static void preorderTraversal(_Node* tree) {
+static void preorderTraversal(Node* tree) {
     if(!tree) {
         return;
     }
@@ -63,7 +63,7 @@ static void preorderTraversal(_Node* tree) {
     preorderTraversal(tree->right);
 }
 
-static void inorderTraversal(_Node* tree) {
+static void inorderTraversal(Node* tree) {
     if (!tree) {
         return;
     }
@@ -73,7 +73,7 @@ static void inorderTraversal(_Node* tree) {
     inorderTraversal(tree->right);
 }
 
-static void postorderTraversal(_Node* tree) {
+static void postorderTraversal(Node* tree) {
     // base case, if tree is empty, for empty node
     if (!tree) {
         return;
@@ -84,7 +84,7 @@ static void postorderTraversal(_Node* tree) {
     printf("[%d] ", tree->data);
 }
 
-static _Node* smallest_Node(_Node* tree) {
+static Node* smallestNode(Node* tree) {
     //special case, tree is empty 
     if (!tree) {
         return NULL;
@@ -94,10 +94,10 @@ static _Node* smallest_Node(_Node* tree) {
         return tree;
     }
 
-    return smallest_Node(tree->left);
+    return smallestNode(tree->left);
 }
 
-static _Node* largest_Node(_Node* tree) {
+static Node* largestNode(Node* tree) {
     // special case, tree is empty 
     if (!tree) {
         return NULL;
@@ -107,10 +107,10 @@ static _Node* largest_Node(_Node* tree) {
         return tree;
     }
 
-    return largest_Node(tree->right);
+    return largestNode(tree->right);
 }
 
-static bool isLeaf(_Node* tree) {
+static bool isLeaf(Node* tree) {
     // both left and right do not exist, is leaf
     if (!tree->left && !tree->right) {
         return true;
@@ -118,7 +118,7 @@ static bool isLeaf(_Node* tree) {
     return false;
 }
 
-static bool hasOnlyOneChild(_Node* tree) {
+static bool hasOnlyOneChild(Node* tree) {
     // only left exists or only right exists 
     if ( (tree->left && !tree->right) ||
             (!tree->left && tree->right) ) {
@@ -127,7 +127,7 @@ static bool hasOnlyOneChild(_Node* tree) {
     return false;
 }
 
-static bool hasTwoChildren(_Node* tree) {
+static bool hasTwoChildren(Node* tree) {
     // both left and right exist 
     if (tree->left && tree->right) {
         return true;
@@ -135,27 +135,27 @@ static bool hasTwoChildren(_Node* tree) {
     return false;
 }
 
-static bool isLeftChild(_Node* parent, _Node* child) {
+static bool isLeftChild(Node* parent, Node* child) {
     if (parent->left == child ) {
         return true;
     }
     return false;
 }
 
-static bool isRightChild(_Node* parent, _Node* child) {
+static bool isRightChild(Node* parent, Node* child) {
     if(parent->right == child) {
         return true;
     }
     return false;
 }
 
-static _Node* deleteElement(_Node* tree, DATA_TYPE value) {
+static Node* deleteElement(Node* tree, DATA_TYPE value) {
     if(!tree) {
         return tree;
     }
 
-    _Node* ptr = tree;
-    _Node* parent = NULL;
+    Node* ptr = tree;
+    Node* parent = NULL;
     while (ptr->data != value) {
         parent = ptr;
         if(value < ptr->data) {
@@ -184,13 +184,13 @@ static _Node* deleteElement(_Node* tree, DATA_TYPE value) {
     // case II, ptr has only one child
     if(hasOnlyOneChild(ptr)) {
         if(!parent) {
-            _Node* child = ptr->left ? ptr->left : ptr->right;
+            Node* child = ptr->left ? ptr->left : ptr->right;
             free(ptr);
             tree = child;
             return tree;
         }
 
-        _Node* child = ptr->left ? ptr->left : ptr->right;
+        Node* child = ptr->left ? ptr->left : ptr->right;
         free(ptr);
         if(isLeftChild(parent, ptr)) {
             parent->left = child;
@@ -202,8 +202,8 @@ static _Node* deleteElement(_Node* tree, DATA_TYPE value) {
 
     // case III, ptr has two children 
     if (hasTwoChildren(ptr)) {
-        _Node* predecessor = tree->left;
-        _Node* parent_predecessor = tree;
+        Node* predecessor = tree->left;
+        Node* parent_predecessor = tree;
 
         while(predecessor->right) {
             parent_predecessor = predecessor;
@@ -220,7 +220,7 @@ static _Node* deleteElement(_Node* tree, DATA_TYPE value) {
                 parent_predecessor->right = NULL;
             }
         } else { // has only one child 
-            _Node* child = predecessor->left;
+            Node* child = predecessor->left;
             free(predecessor);
             if(isLeftChild(parent_predecessor, predecessor)) {
                 parent_predecessor->left = child;
@@ -232,14 +232,14 @@ static _Node* deleteElement(_Node* tree, DATA_TYPE value) {
     return tree;
 }
 
-static int total_Nodes(_Node* tree) {
+static int totalNodes(Node* tree) {
     if (!tree ){
         return 0;
     }
-    return total_Nodes(tree->left) + total_Nodes(tree->right) + 1;
+    return totalNodes(tree->left) + totalNodes(tree->right) + 1;
 }
 
-static int totalLeaves(_Node* tree) {
+static int totalLeaves(Node* tree) {
     if (!tree) {
         return 0;
     }
@@ -250,7 +250,7 @@ static int totalLeaves(_Node* tree) {
     return totalLeaves(tree->left) + totalLeaves(tree->right);
 }
 
-static int totalNonleaves(_Node* tree) {
+static int totalNonleaves(Node* tree) {
     if(!tree) {
         return 0;
     }
@@ -260,7 +260,7 @@ static int totalNonleaves(_Node* tree) {
     return totalNonleaves(tree->left) + totalNonleaves(tree->right) + 1;
 }
 
-static int height(_Node* tree) {
+static int height(Node* tree) {
     if(!tree) {
         return 0;
     }
@@ -270,20 +270,20 @@ static int height(_Node* tree) {
     return height_child + 1;
 }
 
-static _Node* mirrorImage(_Node* tree) {
+static Node* mirrorImage(Node* tree) {
     if(!tree) {
         return tree;
     }
     tree->left = mirrorImage(tree->left);
     tree->right = mirrorImage(tree->right);
-    _Node* temp = tree->left;
+    Node* temp = tree->left;
     tree->left = tree->right;
     tree->right = temp;
 
     return tree;
 }
 
-static _Node* deleteTree(_Node* tree) {
+static Node* deleteTree(Node* tree) {
     if (!tree) {
         return tree;
     }
@@ -300,13 +300,13 @@ const struct binary_tree BINARY_TREE = {
     .deleteElement = deleteElement,
     .inorderTraversal = inorderTraversal,
     .insertElement = insertElement, 
-    .largest_Node = largest_Node,
+    .largestNode = largestNode,
     .postorderTraversal = postorderTraversal,
     .preorderTraversal = preorderTraversal,
-    .smallest_Node = smallest_Node,
+    .smallestNode = smallestNode,
     .searchElement = searchElement,
 
-    .total_Nodes = total_Nodes,
+    .totalNodes = totalNodes,
     .totalLeaves = totalLeaves,
     .totalNonleaves = totalNonleaves,
     .height = height,
