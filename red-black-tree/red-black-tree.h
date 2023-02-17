@@ -12,4 +12,12 @@ typedef struct Node {
     struct Node* parent;
 }Node;
 
+struct red_black_tree {
+    Node* (*initialize)(Node* tree);
+    Node* (*insertElement)(Node* tree, DATA_TYPE value);
+    void (*preorderTraversal)(Node* tree);
+    void (*inorderTraversal)(Node* tree);
+};
+extern const struct red_black_tree RED_BLACK_TREE;
+
 #endif
